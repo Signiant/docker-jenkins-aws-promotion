@@ -40,7 +40,7 @@ RUN source /etc/profile.d/rvm.sh
 #Install required gems for our promotion scripts
 COPY gem-packages.list /tmp/gem.packages.list
 RUN chmod +r /tmp/gem.packages.list
-RUN /bin/bash -l -c "gem install `cat /tmp/gem.packages.list`
+RUN /bin/bash -l -c "gem install `cat /tmp/gem.packages.list`"
 
 # This entry will either run this container as a jenkins slave or just start SSHD
 # If we're using the slave-on-demand, we start with SSH (the default)
