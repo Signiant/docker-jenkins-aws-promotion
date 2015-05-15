@@ -1,15 +1,5 @@
 #!/bin/bash
 
-# Add any external credentials from a local data volume
-if [ -d "/credentials" ]; then
-    echo "Credentials folder found - processing any tar files"
-    for cred_file in /credentials/*.tar
-    do
-        echo "Processing credential file $cred_file"
-        tar xvpf $cred_file -C /home/$BUILD_USER
-    done
-fi
-
 # Just in case some of the tar files do not set correct owner
 chown -R $BUILD_USER:$BUILD_USER_GROUP /home/$BUILD_USER
 
