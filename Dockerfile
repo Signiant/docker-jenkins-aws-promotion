@@ -50,5 +50,6 @@ ENV SLAVE_ID JAVA_NODE
 ENV SLAVE_OS Linux
 
 ADD start.sh /
+RUN chmod 777 /start.sh
 
 CMD ["sh", "/start.sh"]
