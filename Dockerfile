@@ -1,4 +1,4 @@
-FROM signiantdevops/docker-jenkins-centos-base:centos6
+FROM signiant/docker-jenkins-centos-base:centos6
 MAINTAINER devops@signiant.com
 
 # Install ant
