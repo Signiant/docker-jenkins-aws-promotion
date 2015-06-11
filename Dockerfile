@@ -15,6 +15,9 @@ COPY gem.packages.list /tmp/gem.packages.list
 RUN chmod +r /tmp/gem.packages.list
 RUN /bin/bash -l -c "gem install `cat /tmp/gem.packages.list | tr \"\\n\" \" \"`"
 
+# Install the AWS CLI - used by promo process
+RUN pip install awscli
+
 # This entry will either run this container as a jenkins slave or just start SSHD
 # If we're using the slave-on-demand, we start with SSH (the default)
 
