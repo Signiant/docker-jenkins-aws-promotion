@@ -18,6 +18,9 @@ RUN /bin/bash -l -c "gem install `cat /tmp/gem.packages.list | tr \"\\n\" \" \"`
 # Install the AWS CLI - used by promo process
 RUN pip install awscli
 
+# Install shyaml- used by promo process to ECS
+RUN pip install shyaml
+
 # This entry will either run this container as a jenkins slave or just start SSHD
 # If we're using the slave-on-demand, we start with SSH (the default)
 
