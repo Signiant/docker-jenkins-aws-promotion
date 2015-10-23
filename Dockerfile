@@ -2,7 +2,7 @@ FROM signiant/docker-jenkins-centos-base:centos6
 MAINTAINER devops@signiant.com
 
 #install RVM 2.1.2
-RUN /bin/bash -l -c "gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
+RUN /bin/bash -l -c "gpg --keyserver hkp://keys.gnupg.net:80 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
 RUN /bin/bash -l -c "curl -L get.rvm.io | bash -s stable"
 RUN /bin/bash -l -c "rvm install 2.1.2"
 
