@@ -10,6 +10,7 @@ json:1.8.0
 knife-windows
 knife-azure
 knife-lastrun
+knife-reporting
 mini_portile:0.6.0
 multi_json:1.11.0
 multi_xml:0.5.5
