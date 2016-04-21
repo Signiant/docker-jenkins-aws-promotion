@@ -15,6 +15,9 @@ COPY gem.packages.list /tmp/gem.packages.list
 RUN chmod +r /tmp/gem.packages.list
 RUN /bin/bash -l -c "gem install `cat /tmp/gem.packages.list | tr \"\\n\" \" \"`"
 
+#Install GNU Parallel - used by the orchestrator tool
+RUN yum -y install parallel
+
 # Install the AWS CLI - used by promo process
 RUN pip install awscli
 
