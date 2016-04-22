@@ -16,7 +16,9 @@ RUN chmod +r /tmp/gem.packages.list
 RUN /bin/bash -l -c "gem install `cat /tmp/gem.packages.list | tr \"\\n\" \" \"`"
 
 #Install GNU Parallel - used by the orchestrator tool
-RUN yum -y install parallel
+RUN wget http://ftpmirror.gnu.org/parallel/parallel-20160122.tar.bz2
+RUN bzip2 -dc parallel-20160122.tar.bz2 | tar xvf -
+RUN (cd parallel-20160122; ./configure --prefix=/usr/ && make && make install)
 
 # Install the AWS CLI - used by promo process
 RUN pip install awscli
