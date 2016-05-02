@@ -30,6 +30,11 @@ RUN pip install shyaml
 RUN pip install boto
 RUN pip install requests
 
+# Install a specific version of node
+RUN npm install -g n
+RUN echo Installing node version 4.4.3
+RUN n 4.4.3
+
 # This entry will either run this container as a jenkins slave or just start SSHD
 # If we're using the slave-on-demand, we start with SSH (the default)
 
