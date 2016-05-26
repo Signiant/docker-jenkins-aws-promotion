@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Just in case some of the tar files do not set correct owner
-chown -R $BUILD_USER:$BUILD_USER_GROUP /home/$BUILD_USER
+#commented out as this can be sloooooow
+#chown -R $BUILD_USER:$BUILD_USER_GROUP /home/$BUILD_USER
 
 if [ ! -z "$RUN_SLAVE" ]; then
     echo "Downloading jenkins slave from $MASTER_ADDR"
