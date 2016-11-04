@@ -42,6 +42,8 @@ RUN n 4.4.3
 ENV SLAVE_ID JAVA_NODE
 ENV SLAVE_OS Linux
 
+ADD figlet-fonts /figlet-fonts
+
 ADD start.sh /
 RUN chmod 777 /start.sh
 
