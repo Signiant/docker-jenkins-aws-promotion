@@ -1,8 +1,6 @@
 FROM signiant/docker-jenkins-centos-base:centos6
 MAINTAINER devops@signiant.com
 
-RUN yum install -y yum-plugin-ovl
-
 #install RVM 1.9.3
 
 RUN /bin/bash -l -c "gpg2 --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3"
