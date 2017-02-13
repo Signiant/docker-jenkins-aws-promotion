@@ -1,5 +1,5 @@
 aws-sdk
-aws-sdk-v1:1.66.0
+aws-sdk-v1
 figlet
 builder:3.2.2
 bundler:1.3.5

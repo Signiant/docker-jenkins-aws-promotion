@@ -22,7 +22,8 @@ RUN pip install awscli
 RUN pip install shyaml
 
 # Install boto and requests - used by the S3 MIME type setter
-RUN pip install boto boto3 requests
+RUN pip install boto
+RUN pip install requests
 
 # Install MaestroOps
 RUN pip install maestroops
