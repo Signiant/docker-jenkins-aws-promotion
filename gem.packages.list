@@ -1,4 +1,4 @@
-nokogiri:1.5.9
+nokogiri:1.6.8.1
 aws-sdk
 aws-sdk-v1
 figlet
