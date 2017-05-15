@@ -1,4 +1,4 @@
-FROM signiant/docker-jenkins-centos-base:centos6
+FROM signiant/docker-jenkins-centos-base:centos7
 MAINTAINER devops@signiant.com
 
 #install RVM 1.9.3
