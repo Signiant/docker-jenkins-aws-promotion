@@ -11,12 +11,18 @@ if [ ! -z "$RUN_SLAVE" ]; then
                              export JAVA_HOME=$JAVA_HOME;\
                              export MAVEN_HOME=$MAVEN_HOME;\
                              export OS=$SLAVE_OS;\
+                             export LC_ALL=en_US.UTF-8;\
+                             export LANG=en_US.UTF-8;\
+                             export LANGUAGE=en_US.UTF-8;\
           java -jar /slave.jar -jnlpUrl http://$MASTER_ADDR/computer/$SLAVE_ID/slave-agent.jnlp"
     else
         su - $BUILD_USER -c "export HOME=/home/$BUILD_USER;\
                              export JAVA_HOME=$JAVA_HOME;\
                              export MAVEN_HOME=$MAVEN_HOME;\
                              export OS=$SLAVE_OS;\
+                             export LC_ALL=en_US.UTF-8;\
+                             export LANG=en_US.UTF-8;\
+                             export LANGUAGE=en_US.UTF-8;\
           java -jar /slave.jar -jnlpUrl http://$MASTER_ADDR/computer/$SLAVE_ID/slave-agent.jnlp -secret $SECRET"
     fi
 fi
