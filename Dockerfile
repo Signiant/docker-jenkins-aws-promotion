@@ -1,14 +1,8 @@
-FROM signiant/docker-jenkins-centos-base:centos7
+FROM signiant/docker-jenkins-alpine-base
 MAINTAINER devops@signiant.com
 
-#install RVM 1.9.3
-
-RUN /bin/bash -l -c "gpg2 --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3"
-RUN /bin/bash -l -c "curl -L get.rvm.io | bash -s stable"
-RUN /bin/bash -l -c "rvm install 1.9.3"
 RUN /bin/bash -l -c "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
 RUN /bin/bash -l -c "gem install bundler --no-ri --no-rdoc"
-RUN source /etc/profile.d/rvm.sh
 
 #Install required gems for our promotion scripts
 COPY gem.packages.list /tmp/gem.packages.list
@@ -27,6 +21,9 @@ RUN pip install requests
 
 # Install MaestroOps
 RUN pip install maestroops
+
+RUN apk --purge -v del py-pip && \
+    rm -rf /var/cache/apk/*
 
 # This entry will either run this container as a jenkins slave or just start SSHD
 # If we're using the slave-on-demand, we start with SSH (the default)
