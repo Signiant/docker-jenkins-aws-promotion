@@ -40,6 +40,4 @@ RUN chmod 777 /start.sh
 # Make sure all users have access to all node modules
 RUN chmod -R +r /usr/local/lib/node_modules/npm/node_modules/*
 
-USER $BUILD_USER
-
 CMD ["sh", "/start.sh"]
