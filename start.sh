@@ -30,7 +30,7 @@ elif [ ! -z "ASAP" ]; then
     # This is being triggered by ASAP, react accordingly
     CMD=$1
     ARTIFACT_PATH=/artifacts
-    if [ -z "$PROMOTION_REGION" ];
+    if [ -z "$PROMOTION_REGION" ]; then
         # Default to us-west-2 region
         PROMOTION_REGION=us-west-2
     fi
