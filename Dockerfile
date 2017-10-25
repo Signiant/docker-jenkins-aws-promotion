@@ -15,6 +15,12 @@ COPY gem.packages.list /tmp/gem.packages.list
 RUN chmod +r /tmp/gem.packages.list
 RUN /bin/bash -l -c "gem install `cat /tmp/gem.packages.list | tr \"\\n\" \" \"`"
 
+# Install yum packages required for puppeteer
+# https://github.com/GoogleChrome/puppeteer/issues/560#issuecomment-325224766
+COPY yum-packages.list /tmp/yum.packages.list
+RUN chmod +r /tmp/yum.packages.list \
+  && yum install -y -q `cat /tmp/yum.packages.list`
+
 # Install the AWS CLI - used by promo process
 RUN pip install awscli
 
