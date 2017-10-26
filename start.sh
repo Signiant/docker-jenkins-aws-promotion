@@ -26,9 +26,9 @@ if [ ! -z "$RUN_SLAVE" ]; then
                              export LANGUAGE=en_US.UTF-8;\
           java -jar /slave.jar -jnlpUrl http://$MASTER_ADDR/computer/$SLAVE_ID/slave-agent.jnlp -secret $SECRET"
     fi
-elif [ ! -z "ASAP" ]; then
+elif [ ! -z "$ASAP" ]; then
     # This is being triggered by ASAP, react accordingly
-    CMD=$1
+    CMD="$@"
     ARTIFACT_PATH=/artifacts
     if [ -z "$PROMOTION_REGION" ]; then
         # Default to us-west-2 region
@@ -114,7 +114,9 @@ elif [ ! -z "ASAP" ]; then
         get_temporary_aws_credentials $ROLE_ARN
     fi
 
-    echo "Running the following command: $CMD"
-    eval $CMD
+    echo "Running the following command: ${CMD}"
+    eval "${CMD}"
+    exit $?
+else
+    eval "$@"
 fi
-exit $?
