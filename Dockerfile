@@ -46,4 +46,4 @@ ADD figlet-fonts /figlet-fonts
 ADD start.sh /
 RUN chmod 777 /start.sh
 
-CMD ["sh", "/start.sh"]
+CMD ["/start.sh"]
