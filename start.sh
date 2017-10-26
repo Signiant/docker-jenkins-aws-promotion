@@ -87,6 +87,13 @@ elif [ ! -z "ASAP" ]; then
         export AWS_SESSION_TOKEN=$session_token
     }
 
+    if [ ! -z "$NPM_CONFIG" ]; then
+        # Need to set up npm (and yarm) config
+        get_credential $NPM_CREDENTIALS_PARAM $NPM_CRED
+        npm config set globalconfig /credentials/.npmrc
+        yarn config set globalconfig /credentials/.npmrc
+    fi
+
     if [ ! -z "$AWS_PROMO_SCRIPTS_REPO_URL" ]; then
         # AWS_PROMO_SCRIPTS_REPO_URL is set - need to get our git credentials and clone the repo
         get_credential $GIT_CREDENTIALS_PARAM $GIT_CRED
@@ -100,12 +107,6 @@ elif [ ! -z "ASAP" ]; then
             echo "ERROR: Unable to clone Git repo: $AWS_PROMO_SCRIPTS_REPO_URL"
             exit 1
         fi
-    fi
-
-    if [ ! -z "$NPM_CONFIG" ]; then
-        # Need to set up npm (and yarm) config
-        get_credential $NPM_CREDENTIALS_PARAM $NPM_CRED
-        npm config set globalconfig /credentials/.npmrc
     fi
 
     # Run this with the appropriate role
