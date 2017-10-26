@@ -90,8 +90,8 @@ elif [ ! -z "ASAP" ]; then
     if [ ! -z "$NPM_CONFIG" ]; then
         # Need to set up npm (and yarm) config
         get_credential $NPM_CREDENTIALS_PARAM $NPM_CRED
-        npm config set globalconfig /credentials/.npmrc
-        yarn config set globalconfig /credentials/.npmrc
+        rm -f ~/.npmrc
+        ln -s /credentials/.npmrc ~/.npmrc
     fi
 
     if [ ! -z "$AWS_PROMO_SCRIPTS_REPO_URL" ]; then
