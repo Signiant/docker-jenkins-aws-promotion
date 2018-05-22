@@ -21,18 +21,12 @@ COPY yum-packages.list /tmp/yum.packages.list
 RUN chmod +r /tmp/yum.packages.list \
   && yum install -y -q `cat /tmp/yum.packages.list`
 
+# python module installs:
 # Install the AWS CLI - used by promo process
-RUN pip install awscli
-
 # Install shyaml - used by promo process to ECS
-RUN pip install shyaml
-
 # Install boto and requests - used by the S3 MIME type setter
-RUN pip install boto
-RUN pip install requests
-
-# Install MaestroOps and slackclient
-RUN pip install maestroops slackclient
+# Install MaestroOps, slackclient, and datadog
+RUN pip install awscli shyaml boto requests maestroops datadog slackclient
 
 # This entry will either run this container as a jenkins slave or just start SSHD
 # If we're using the slave-on-demand, we start with SSH (the default)
