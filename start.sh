@@ -97,8 +97,8 @@ elif [ ! -z "$ASAP" ]; then
     if [ ! -z "$AWS_PROMO_SCRIPTS_REPO_URL" ]; then
         # AWS_PROMO_SCRIPTS_REPO_URL is set - need to get our git credentials and clone the repo
         get_credential $GIT_CREDENTIALS_PARAM $GIT_CRED
-        mkdir aws-promo-scripts
-        cd aws-promo-scripts
+        mkdir -p /aws-promo-scripts
+        pushd /aws-promo-scripts > /dev/null
         git init . > /dev/null
         git config credential.helper 'store --file='$GIT_CRED
         git config remote.origin.url $AWS_PROMO_SCRIPTS_REPO_URL
@@ -107,6 +107,9 @@ elif [ ! -z "$ASAP" ]; then
             echo "ERROR: Unable to clone Git repo: $AWS_PROMO_SCRIPTS_REPO_URL"
             exit 1
         fi
+        # Make all scripts executable, in case they aren't already
+        find ./ -type f -iname "*.sh" -exec chmod +x {} \;
+        popd > /dev/null
     fi
 
     # Run this with the appropriate role
