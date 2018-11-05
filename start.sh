@@ -94,22 +94,17 @@ elif [ ! -z "$ASAP" ]; then
         ln -s /credentials/.npmrc ~/.npmrc
     fi
 
-    if [ ! -z "$AWS_PROMO_SCRIPTS_REPO_URL" ]; then
-        # AWS_PROMO_SCRIPTS_REPO_URL is set - need to get our git credentials and clone the repo
+    if [ ! -z "$REPO_PATH" ]; then
+        # REPO_PATH is set - need to get our git credentials and clone the repo
         get_credential $GIT_CREDENTIALS_PARAM $GIT_CRED
-        mkdir -p /aws-promo-scripts
-        pushd /aws-promo-scripts > /dev/null
-        git init . > /dev/null
-        git config credential.helper 'store --file='$GIT_CRED
-        git config remote.origin.url $AWS_PROMO_SCRIPTS_REPO_URL
-        git pull > /dev/null 2>&1
+        REPO_CRED=$(cat $GIT_CRED)
+        git clone ${REPO_CRED}/${REPO_PATH} aws-promo-scripts
         if [ $? -ne 0 ]; then
-            echo "ERROR: Unable to clone Git repo: $AWS_PROMO_SCRIPTS_REPO_URL"
+            echo "ERROR: Unable to clone Git repo with path: $REPO_PATH"
             exit 1
         fi
         # Make all scripts executable, in case they aren't already
-        find ./ -type f -iname "*.sh" -exec chmod +x {} \;
-        popd > /dev/null
+        find ./aws-promo-scripts -type f -iname "*.sh" -exec chmod +x {} \;
     fi
 
     # Run this with the appropriate role
