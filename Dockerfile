@@ -31,6 +31,11 @@ RUN pip install awscli shyaml boto requests maestroops datadog slackclient
 COPY automation/ /automation/
 COPY prereq/ /prereq/
 
+ENV NPM_VERSION "6.5.0"
+
+RUN npm version && npm install -g n && n stable
+RUN npm install -g npm@$NPM_VERSION && npm version
+
 # This entry will either run this container as a jenkins slave or just start SSHD
 # If we're using the slave-on-demand, we start with SSH (the default)
 
