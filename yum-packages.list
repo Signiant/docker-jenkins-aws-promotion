@@ -1,4 +1,5 @@
 pango.x86_64
+libpng-devel
 libXcomposite.x86_64
 libXcursor.x86_64
 libXdamage.x86_64
