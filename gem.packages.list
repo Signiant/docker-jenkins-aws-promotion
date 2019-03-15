@@ -1,4 +1,5 @@
 nokogiri:1.6.8.1
+aws-sdk
 aws-sdk-v1
 figlet
 builder:3.2.2
