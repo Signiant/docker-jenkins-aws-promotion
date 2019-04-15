@@ -2,11 +2,13 @@
 
 # Used by ASAP
 
-PREREQUISITE_CONF_FILE=$1
+ENVIRONMENT=$1
 
-PROMO_SCRIPTS_PATH=/aws-promo-scripts/aws-deploy/python-scripts
 
-timeout 300 python ${PROMO_SCRIPTS_PATH}/prerequisite-checker/prerequisite-checker.py --conf-file ${PREREQUISITE_CONF_FILE}
+PREREQUISITE_CONF_FILE=${BITBUCKET_CLONE_DIR}/deploy/${ENVIRONMENT}.prerequisites.yaml
+if [ -e "${PREREQUISITE_CONF_FILE}" ]; then
+    timeout 300 python ${BITBUCKET_CLONE_DIR}/promo_tooling/aws-deploy/python-scripts/prerequisite-checker/prerequisite-checker.py --conf-file "${PREREQUISITE_CONF_FILE}"
+fi
 
 status=$?
 
