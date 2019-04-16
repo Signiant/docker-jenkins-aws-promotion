@@ -14,9 +14,6 @@ RUN chmod +r /tmp/yum.packages.list \
 # Install MaestroOps, slackclient, and datadog
 RUN pip install awscli shyaml boto requests maestroops datadog slackclient pyyaml
 
-COPY automation/ /automation/
-COPY prereq/ /prereq/
-
 # Default Jenkins Slave Name
 ENV SLAVE_ID JAVA_NODE
 ENV SLAVE_OS Linux
