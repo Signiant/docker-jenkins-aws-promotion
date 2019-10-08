@@ -28,7 +28,8 @@ RUN chmod +r /tmp/yum.packages.list \
 # Install shyaml - used by promo process to ECS
 # Install boto and requests - used by the S3 MIME type setter
 # Install MaestroOps, slackclient, and datadog
-RUN pip install awscli shyaml boto requests maestroops datadog slackclient
+# Install dns - used by eb_check_live_env.py
+RUN pip install awscli shyaml boto requests maestroops datadog slackclient dnspython
 
 COPY automation/ /automation/
 COPY prereq/ /prereq/
