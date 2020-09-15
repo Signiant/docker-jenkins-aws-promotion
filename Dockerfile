@@ -12,7 +12,7 @@ RUN chmod +r /tmp/yum.packages.list \
 # Install shyaml - used by promo process to ECS
 # Install boto and requests - used by the S3 MIME type setter
 # Install MaestroOps, slackclient, and datadog
-RUN pip3 install awscli shyaml boto requests maestroops datadog slackclient pyyaml
+RUN pip3 install boto boto3 awscli shyaml requests maestroops datadog slackclient pyyaml
 
 # Default Jenkins Slave Name
 ENV SLAVE_ID JAVA_NODE
