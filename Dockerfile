@@ -1,10 +1,8 @@
 FROM signiant/docker-jenkins-centos-base:centos7-java8
-MAINTAINER devops@signiant.com
+LABEL maintainer=sre@signiant.com
 
 #install RVM 1.9.3
-
-#RUN /bin/bash -l -c "gpg2 --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3"
-RUN /bin/bash -l -c "gpg2 --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB"
+RUN /bin/bash -l -c "gpg --keyserver keyserver.ubuntu.com --recv-key 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB"
 RUN /bin/bash -l -c "curl -L get.rvm.io | bash -s stable"
 RUN /bin/bash -l -c "rvm get 1.29.7"
 RUN /bin/bash -l -c "rvm install 1.9.3"
@@ -30,8 +28,14 @@ RUN chmod +r /tmp/yum.packages.list \
 # Install boto and requests - used by the S3 MIME type setter
 # Install MaestroOps, slackclient, and datadog
 # Install dns - used by eb_check_live_env.py
+RUN pip install --upgrade pip==19
 RUN pip install --upgrade pip
 RUN pip install awscli shyaml boto requests maestroops datadog slackclient dnspython
+
+# python3 module installs
+RUN yum install -y python3
+RUN pip3 install --upgrade pip
+RUN pip3 install awscli shyaml boto3 requests maestroops datadog slackclient dnspython3
 
 COPY automation/ /automation/
 COPY prereq/ /prereq/
