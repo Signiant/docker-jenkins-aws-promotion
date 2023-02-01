@@ -29,11 +29,13 @@ RUN chmod +r /tmp/yum.packages.list \
 # Install dns - used by eb_check_live_env.py
 RUN pip install --upgrade pip==19
 RUN pip install --upgrade pip
+
 RUN pip install awscli shyaml boto requests maestroops datadog slackclient pyyaml dnspython
 
 # python3 module installs
 RUN yum install -y python3
 RUN pip3 install --upgrade pip
+
 RUN pip3 install awscli shyaml boto3 requests maestroops datadog slackclient dnspython3 pyyaml
 
 COPY automation/ /automation/
