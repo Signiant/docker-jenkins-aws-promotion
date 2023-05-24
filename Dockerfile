@@ -35,7 +35,7 @@ RUN pip install awscli shyaml boto requests maestroops datadog slackclient dnspy
 # python3 module installs
 RUN yum install -y python3
 RUN pip3 install --upgrade pip
-RUN pip3 install awscli shyaml boto3 requests maestroops datadog slackclient dnspython3
+RUN pip3 install awscli aws-sam-cli shyaml boto3 requests maestroops datadog slackclient dnspython3
 
 COPY automation/ /automation/
 COPY prereq/ /prereq/
